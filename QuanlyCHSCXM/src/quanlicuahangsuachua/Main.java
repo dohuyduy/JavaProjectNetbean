@@ -194,9 +194,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_miPhieuSuaChuaActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-//               ThongTinPhanMem ttpm = new ThongTinPhanMem();
-//               this.setVisible(true);
-//               ttpm.setVisible(true); 
+              ThongTinPhanMem ttpm = new ThongTinPhanMem();
+              this.setVisible(true);
+             ttpm.setVisible(true); 
                
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
