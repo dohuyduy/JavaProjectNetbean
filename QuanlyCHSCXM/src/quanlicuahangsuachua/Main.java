@@ -151,6 +151,11 @@ public class Main extends javax.swing.JFrame {
         mTacvu.setText("Trợ giúp");
 
         jMenuItem12.setText("Hướng dẫn sử dụng");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         mTacvu.add(jMenuItem12);
 
         jMenuItem13.setText("Thông tin phần mềm");
@@ -195,22 +200,36 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
               ThongTinPhanMem ttpm = new ThongTinPhanMem();
+              this.setLocationRelativeTo(null);
               this.setVisible(true);
              ttpm.setVisible(true); 
                
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void miNhapPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miNhapPTActionPerformed
- NhapPhuTung npt= new NhapPhuTung();
+ 
+      
+        NhapPhuTung npt= new NhapPhuTung();
+   this.setLocationRelativeTo(null);
                this.setVisible(false);
                npt.setVisible(true);         
     }//GEN-LAST:event_miNhapPTActionPerformed
 
     private void miTkPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miTkPTActionPerformed
+       
         ThongKePhuTung tkpt= new ThongKePhuTung();
+        this.setLocationRelativeTo(null);
                this.setVisible(false);
                tkpt.setVisible(true);   
     }//GEN-LAST:event_miTkPTActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        
+        HuongDanSuDung hdsd = new HuongDanSuDung();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        hdsd.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
      * @param args the command line arguments
