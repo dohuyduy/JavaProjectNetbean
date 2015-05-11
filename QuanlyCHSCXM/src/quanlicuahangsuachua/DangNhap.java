@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package quanlicuahangsuachua;
+import Connect.Data;
+import java.sql.*;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +16,21 @@ import java.util.Calendar;
  */
 public class DangNhap extends javax.swing.JFrame {
 
+    private Connection con;
+    private ResultSet rs;
+    private PreparedStatement stmt;
+    
     /**
      * Creates new form DangNhap
      */
     public DangNhap() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        try {
+            con = Data.getConnection();
+        } catch (Exception e) {
+        }
+        currentTime();
     }
 
     /**
@@ -33,14 +47,14 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txttaikhoan = new javax.swing.JTextField();
+        txtAccount = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtmatkhau = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
-        btndangnhap = new javax.swing.JButton();
-        btnthoat = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        lbdate = new javax.swing.JLabel();
+        lbTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,20 +81,32 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Username: ");
         jPanel3.add(jLabel2);
-        jPanel3.add(txttaikhoan);
+        jPanel3.add(txtAccount);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Password:");
         jPanel3.add(jLabel3);
-        jPanel3.add(txtmatkhau);
+        jPanel3.add(txtPassword);
 
         jPanel4.setLayout(new java.awt.GridLayout(1, 2));
 
-        btndangnhap.setText("Login");
-        jPanel4.add(btndangnhap);
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnLogin);
 
-        btnthoat.setText("Exit");
-        jPanel4.add(btnthoat);
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnExit);
+
+        lbTime.setText("lbTime");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -88,11 +114,11 @@ public class DangNhap extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lbdate, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbdate, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+            .addComponent(lbTime, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -133,6 +159,51 @@ public class DangNhap extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void currentTime(){
+   
+    Calendar cal=new GregorianCalendar();
+    int Month= cal.get(Calendar.MONTH);
+    int Year= cal.get(Calendar.YEAR);
+    int Day= cal.get(Calendar.DAY_OF_MONTH); 
+    int Minute= cal.get(Calendar.MINUTE);
+    int Hour= cal.get(Calendar.HOUR_OF_DAY);
+    lbTime.setText(Day+"-"+(Month+1)+"-"+Year+" | "+Hour+":"+(Minute));
+    
+    
+    
+}
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        if (JOptionPane.showConfirmDialog(null,"Exit this program?","Managment",2) == 0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String username = txtAccount.getText();
+        String password = txtPassword.getText();
+        
+        String sql = "SELECT * FROM  demoqlchscxm.user WHERE user=? AND passWord = ?"; 
+        
+        
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
+             if(rs.next()){
+                Main Frmm =new Main();
+                    this.setVisible(false);
+                    Frmm.setVisible(true);
+            }else
+                 {
+                    JOptionPane.showMessageDialog(this, "Login Failed, try again!");
+                }
+            
+            } catch (Exception e) {
+            
+        }
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,8 +241,8 @@ public class DangNhap extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btndangnhap;
-    private javax.swing.JButton btnthoat;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -180,8 +251,8 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel lbdate;
-    private javax.swing.JPasswordField txtmatkhau;
-    private javax.swing.JTextField txttaikhoan;
+    private javax.swing.JLabel lbTime;
+    private javax.swing.JTextField txtAccount;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
