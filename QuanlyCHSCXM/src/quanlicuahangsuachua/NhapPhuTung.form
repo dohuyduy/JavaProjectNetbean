@@ -39,11 +39,11 @@
               <Component id="jPanel1" min="-2" pref="321" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel4" pref="34" max="32767" attributes="0"/>
+                  <Component id="jPanel4" max="32767" attributes="0"/>
                   <Component id="jPanel5" max="32767" attributes="0"/>
                   <Component id="lbTongPhuTung" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="97" max="32767" attributes="0"/>
+              <EmptySpace pref="117" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -313,6 +313,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icon/close-icon-32.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
           </Properties>
           <Events>

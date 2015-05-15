@@ -5,6 +5,8 @@
  */
 package quanlicuahangsuachua;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author huyduy
@@ -33,8 +35,8 @@ public class Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mKhachhang = new javax.swing.JMenu();
-        miThongKeXe = new javax.swing.JMenuItem();
         miPhieuSuaChua = new javax.swing.JMenuItem();
+        miThongKeXe = new javax.swing.JMenuItem();
         mPhutung = new javax.swing.JMenu();
         miNhapPT = new javax.swing.JMenuItem();
         miTkPT = new javax.swing.JMenuItem();
@@ -46,12 +48,12 @@ public class Main extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         miTimPT = new javax.swing.JMenuItem();
         TimNCC = new javax.swing.JMenuItem();
-        mHDSD = new javax.swing.JMenu();
-        miDangxuat = new javax.swing.JMenuItem();
-        miThoat = new javax.swing.JMenuItem();
         mTacvu = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        mHDSD = new javax.swing.JMenu();
+        miDangxuat = new javax.swing.JMenuItem();
+        miThoat = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,23 +61,22 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 696, Short.MAX_VALUE)
+            .addGap(0, 889, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            .addGap(0, 448, Short.MAX_VALUE)
         );
 
-        mKhachhang.setText("Khách hàng");
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(459, 55));
 
-        miThongKeXe.setText("Thống kê xe");
-        miThongKeXe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miThongKeXeActionPerformed(evt);
-            }
-        });
-        mKhachhang.add(miThongKeXe);
+        mKhachhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/contact-icon-48.png"))); // NOI18N
+        mKhachhang.setText("KHÁCH");
+        mKhachhang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        mKhachhang.setPreferredSize(new java.awt.Dimension(123, 60));
 
+        miPhieuSuaChua.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        miPhieuSuaChua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/setting-icon-32.png"))); // NOI18N
         miPhieuSuaChua.setText("Phiếu sửa chữa");
         miPhieuSuaChua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,10 +85,24 @@ public class Main extends javax.swing.JFrame {
         });
         mKhachhang.add(miPhieuSuaChua);
 
+        miThongKeXe.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        miThongKeXe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/stat-icon-32.png"))); // NOI18N
+        miThongKeXe.setText("Thống kê xe");
+        miThongKeXe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miThongKeXeActionPerformed(evt);
+            }
+        });
+        mKhachhang.add(miThongKeXe);
+
         jMenuBar1.add(mKhachhang);
 
-        mPhutung.setText("Phụ tùng");
+        mPhutung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/scooter-icon-48.png"))); // NOI18N
+        mPhutung.setText("PHỤ TÙNG");
+        mPhutung.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        miNhapPT.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        miNhapPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cart-add-icon-32.png"))); // NOI18N
         miNhapPT.setText("Nhập phụ tùng");
         miNhapPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +111,8 @@ public class Main extends javax.swing.JFrame {
         });
         mPhutung.add(miNhapPT);
 
+        miTkPT.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        miTkPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/stat-icon-32.png"))); // NOI18N
         miTkPT.setText("Thống kê phụ tùng");
         miTkPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,22 +123,39 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(mPhutung);
 
-        miDSNV.setText("Nhân viên");
+        miDSNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/msg-brown-icon-48.png"))); // NOI18N
+        miDSNV.setText("NHÂN VIÊN");
+        miDSNV.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/contacts-icon-32.png"))); // NOI18N
         jMenuItem5.setText("Danh sách nhân viên");
         miDSNV.add(jMenuItem5);
 
         jMenuBar1.add(miDSNV);
 
-        miLichLV.setText("Lịch làm việc");
+        miLichLV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/calendar-icon-48.png"))); // NOI18N
+        miLichLV.setText("LỊCH LÀM VIỆC");
+        miLichLV.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/calendar-icon-32.png"))); // NOI18N
         jMenuItem6.setText("Lịch làm việc");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         miLichLV.add(jMenuItem6);
 
         jMenuBar1.add(miLichLV);
 
-        miTimKhach.setText("Tìm kiếm");
+        miTimKhach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/zoom-seach-icon-48.png"))); // NOI18N
+        miTimKhach.setText("TÌM KIẾM");
+        miTimKhach.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/find-icon-32.png"))); // NOI18N
         jMenuItem7.setText("Tìm kiếm Khách hàng");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,26 +164,24 @@ public class Main extends javax.swing.JFrame {
         });
         miTimKhach.add(jMenuItem7);
 
+        miTimPT.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        miTimPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/zoom-seach-icon-32.png"))); // NOI18N
         miTimPT.setText("Tìm kiếm Phụ tùng");
         miTimKhach.add(miTimPT);
 
+        TimNCC.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        TimNCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/zoom-seach-icon-32.png"))); // NOI18N
         TimNCC.setText("Tìm kiếm nhà Cung cấp");
         miTimKhach.add(TimNCC);
 
         jMenuBar1.add(miTimKhach);
 
-        mHDSD.setText("Tác vụ");
+        mTacvu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/chat-icon-48.png"))); // NOI18N
+        mTacvu.setText("TRỢ GIÚP");
+        mTacvu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        miDangxuat.setText("Đăng xuất");
-        mHDSD.add(miDangxuat);
-
-        miThoat.setText("Thoát");
-        mHDSD.add(miThoat);
-
-        jMenuBar1.add(mHDSD);
-
-        mTacvu.setText("Trợ giúp");
-
+        jMenuItem12.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/compose-icon-32.png"))); // NOI18N
         jMenuItem12.setText("Hướng dẫn sử dụng");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +190,8 @@ public class Main extends javax.swing.JFrame {
         });
         mTacvu.add(jMenuItem12);
 
+        jMenuItem13.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/like-icon-32.png"))); // NOI18N
         jMenuItem13.setText("Thông tin phần mềm");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +201,32 @@ public class Main extends javax.swing.JFrame {
         mTacvu.add(jMenuItem13);
 
         jMenuBar1.add(mTacvu);
+
+        mHDSD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/power-icon-48.png"))); // NOI18N
+        mHDSD.setText("TÁC VỤ");
+        mHDSD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        miDangxuat.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        miDangxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow-forward-icon-32.png"))); // NOI18N
+        miDangxuat.setText("Đăng xuất");
+        miDangxuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDangxuatActionPerformed(evt);
+            }
+        });
+        mHDSD.add(miDangxuat);
+
+        miThoat.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        miThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/close-icon-32.png"))); // NOI18N
+        miThoat.setText("Thoát");
+        miThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miThoatActionPerformed(evt);
+            }
+        });
+        mHDSD.add(miThoat);
+
+        jMenuBar1.add(mHDSD);
 
         setJMenuBar(jMenuBar1);
 
@@ -178,7 +238,10 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -230,6 +293,22 @@ public class Main extends javax.swing.JFrame {
         this.setVisible(true);
         hdsd.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void miDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDangxuatActionPerformed
+         DangNhap dn1 = new DangNhap();
+        this.setLocationRelativeTo(null);
+        this.setVisible(false);
+        dn1.setVisible(true);
+    }//GEN-LAST:event_miDangxuatActionPerformed
+
+    private void miThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miThoatActionPerformed
+if(JOptionPane.showConfirmDialog(null,"Bạn có muốn thoát khỏi chương trình không?", "Thông báo", 2) == 0)
+    this.dispose();          
+    }//GEN-LAST:event_miThoatActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
