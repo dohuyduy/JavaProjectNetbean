@@ -199,9 +199,28 @@ public void currentTime(){
             stmt.setString(2, password);
             rs = stmt.executeQuery();
              if(rs.next()){
-                Main Frmm =new Main();
-                    this.setVisible(false);
-                    Frmm.setVisible(true);
+                 String chucVu = rs.getString("chucVu");
+                 switch (chucVu){
+                     case "admin":
+                         Main Frr = new Main();
+                         this.setVisible(false);
+                         Frr.setVisible(true);
+                         break;
+                         
+                     case "NVPV":
+                         Main Frr1 = new Main();
+                         this.setVisible(true);
+                         Frr1.setVisible(true);
+                         break;
+                    case "NVSC":
+                         Main Frr2 = new Main();
+                         this.setVisible(true);
+                         Frr2.setVisible(true);
+                         break;
+                     default:
+                          JOptionPane.showMessageDialog(this, "Login Failed, try again!");
+                 }
+                
             }else
                  {
                     JOptionPane.showMessageDialog(this, "Login Failed, try again!");

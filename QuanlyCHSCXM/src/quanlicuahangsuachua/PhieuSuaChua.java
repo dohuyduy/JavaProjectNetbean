@@ -7,6 +7,7 @@ package quanlicuahangsuachua;
 
 
 import Connect.Data;
+import Model.PhieuSuaChua1;
 import com.itextpdf.awt.PdfPrinterGraphics2D;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -699,12 +700,43 @@ private PreparedStatement stmt;
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+        
         int row = tbPhieuSuaChua.getSelectedRow();
+         String IDrow = (this.tbPhieuSuaChua.getModel().getValueAt(row, 0)).toString();
         if(row != -1 ){
-        ChiTietSuaChua ctsc = new ChiTietSuaChua();
+        try {
+            String sql = "SELECT * FROM demoqlchscxm.phieusuachua WHERE idPhieuSuaChua = '"+IDrow+"'";
+           // String sql1= "SELECT * FROM demoqlchscxm.nhap_phu_tung where STT = '"+IDrow+"'";
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            if(rs.next()){
+            PhieuSuaChua1 psc1 = new PhieuSuaChua1();
+        psc1.setIdPhieuSuaChua(rs.getInt("idPhieuSuaChua"));
+        psc1.setNhanVienPhucVu(rs.getString("nhanVienPhucVu"));
+        psc1.setNgayNhan(rs.getDate("ngayNhan"));
+        psc1.setTenKhachHang(rs.getString("tenKhachHang"));
+        psc1.setBienKiemSoat(rs.getString("bienKiemSoat"));
+        psc1.setDienThoai(rs.getString("dienThoai"));
+        psc1.setNgayGiao(rs.getDate("ngayGiao"));
+        psc1.setNhanVienSuaChua(rs.getString("nhanVienSuaChua"));
+        psc1.setTinhTrangTruoc(rs.getString("tinhTrangTruoc"));
+        psc1.setNgayTra(rs.getDate("ngayTra"));
+        psc1.setTongPhi(rs.getInt("tongPhi"));
+        psc1.setTinhTrangSau(rs.getString("tinhTrangSau"));
+        
+        
+        ChiTietSuaChua ctsc = new ChiTietSuaChua(this,psc1);
         this.setVisible(false);
         ctsc.setVisible(true);
+            }
+        } catch (Exception e) {
+          
+                    
         }
+        
+        }
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

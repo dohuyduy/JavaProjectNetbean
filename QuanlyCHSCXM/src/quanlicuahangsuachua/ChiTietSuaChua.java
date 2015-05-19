@@ -6,6 +6,7 @@
 package quanlicuahangsuachua;
 
 import Connect.Data;
+import Model.PhieuSuaChua1;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +25,26 @@ private PreparedStatement stmt,stmt1,stmt2;
     /**
      * Creates new form ChiTietSuaChua
      */
+
+     
+     public ChiTietSuaChua(PhieuSuaChua phieusuachua,PhieuSuaChua1 psc1){
+         super();
+          initComponents();
+        this.setLocationRelativeTo(null);
+        try {
+            con = Data.getConnection();
+        } catch (Exception e) {
+        }
+        int a = psc1.getIdPhieuSuaChua();  //can phai sua cho nay de xuat ra Id
+        
+        txtIdPhieuSuaChua.setText(String.valueOf(a));
+        txtTenKhachHang.setText(psc1.getTenKhachHang());
+        showtbThongKePhuTung();
+        showtbPhieuXuat();
+     }
+
+
+     
     public ChiTietSuaChua() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -172,9 +193,12 @@ private PreparedStatement stmt,stmt1,stmt2;
         btnTongTien = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         txtSoLuongConLai = new javax.swing.JTextField();
         btnBack1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtIdPhieuSuaChua = new javax.swing.JTextField();
+        txtTenKhachHang = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -246,7 +270,7 @@ private PreparedStatement stmt,stmt1,stmt2;
                 .addComponent(txtSoLuongXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -295,8 +319,6 @@ private PreparedStatement stmt,stmt1,stmt2;
             }
         });
 
-        jLabel2.setText("Số lượng còn lại ");
-
         txtSoLuongConLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSoLuongConLaiActionPerformed(evt);
@@ -310,6 +332,16 @@ private PreparedStatement stmt,stmt1,stmt2;
             }
         });
 
+        jLabel2.setText("ID Phiếu Sửa Chữa:");
+
+        jLabel3.setText("Khách hàng:");
+
+        txtIdPhieuSuaChua.setEditable(false);
+        txtIdPhieuSuaChua.setText("ID PSC");
+
+        txtTenKhachHang.setEditable(false);
+        txtTenKhachHang.setText("Tên khách hàng");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -318,11 +350,19 @@ private PreparedStatement stmt,stmt1,stmt2;
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(264, 264, 264)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(txtSoLuongConLai, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(127, 127, 127)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdPhieuSuaChua, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
+                    .addComponent(txtSoLuongConLai, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(165, 165, 165))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnTongTien)
@@ -350,12 +390,20 @@ private PreparedStatement stmt,stmt1,stmt2;
                     .addComponent(jTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSoLuongConLai))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSoLuongConLai, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIdPhieuSuaChua, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -387,169 +435,147 @@ private PreparedStatement stmt,stmt1,stmt2;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSoLuongXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongXuatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoLuongXuatActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTongTienActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        
-        String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
-        String sql = "INSERT INTO demoqlchscxm.phieuXuat (idphutung,soLuongXuat3) VALUES (?,?)";
-   
-        try {
-             stmt = con.prepareStatement(sql);
-            stmt1 = con.prepareStatement(sql1);
-          
-            
-             int row=this.tbThongKePhuTung.getSelectedRow();// lay dong hien tai dang nhan chuot
-    String IDrow= (this.tbThongKePhuTung.getModel().getValueAt(row, 0)).toString();// lay gia tri id cua dong thu i
-    int idCuaPhuTung = Integer.parseInt(IDrow);
-        stmt.setInt(1,idCuaPhuTung);
-        stmt.setInt(2,Integer.parseInt(txtSoLuongXuat.getText()));
-  
-        
-        
-        String IDrow6= (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
-        int SoLuongConLaiDangCo = Integer.parseInt(IDrow6);
-        stmt1.setInt(1,(SoLuongConLaiDangCo - Integer.parseInt(txtSoLuongXuat.getText())));
-        stmt1.setInt(2,idCuaPhuTung);
-        
-        
-        
-//         int row = -1;
-//        int tongTien = 0;
-//         String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
-//         try {
-//             stmt = con.prepareStatement(sql);
-//            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
-//            while(rs.next()){
-//    row = row + 1;
-//     txtTongTien.setText(" "+String.valueOf(tongTien)); 
-//    int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
-//      int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
-//    tongTien = tongTien + giaThanhXuat * soLuongXuat1;
-//    txtTongTien.setText(" "+String.valueOf(tongTien));
-        
-        
-        
-        
-        
-         stmt.executeUpdate();
-        stmt1.executeUpdate();
-       // thanhTien();
-        
-        } catch (Exception e) {
-        }
-        
-        showtbPhieuXuat();
-        showtbThongKePhuTung();
-        
-      
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void tbThongKePhuTungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbThongKePhuTungMouseClicked
-       int row = tbThongKePhuTung.getSelectedRow();
-        if(row != -1 ){
-            
-          
-            
-    
-            
-            txtSoLuongConLai.setText(tbThongKePhuTung.getValueAt(row, 6).toString());
-           
-        }
-
-    }//GEN-LAST:event_tbThongKePhuTungMouseClicked
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         PhieuSuaChua psc = new PhieuSuaChua();
         this.setVisible(false);
         psc.setVisible(true);
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void tbPhieuXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPhieuXuatMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbPhieuXuatMouseClicked
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-       
-         String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
-        String sql = "DELETE FROM demoqlchscxm.phieuXuat WHERE idPhieuXuat = ?";
-        try {
-            stmt = con.prepareStatement(sql);
-            stmt1 = con.prepareStatement(sql1);
-       //phieu Xuat     
-   int row=this.tbPhieuXuat.getSelectedRow();// lay dong hien tai dang nhan chuot
-   int IDrowPhieuXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 0)).toString());// lay gia tri id cua dong thu i
-    int IDrowPhuTung  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 1)).toString());
-    int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());//chinh cai naylai xoa duoc
-   int soLuongConLai1 = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 5)).toString());
-  
-       
-   stmt1.setInt(1, soLuongXuat1 + soLuongConLai1);  //phai cong them so luong xuat lay tu bang thong ke phu tung
-    stmt1.setInt(2, IDrowPhuTung);
-    
-    
-   stmt.setInt(1,IDrowPhieuXuat);
-            
-   
-            stmt1.executeUpdate();
-            stmt.executeUpdate();
-            // thanhTien();
-            
-        } catch (Exception e) {
-        }
-        
-       
-       showtbPhieuXuat();
-        showtbThongKePhuTung();
-        
-       
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnBack1ActionPerformed
 
     private void txtSoLuongConLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongConLaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoLuongConLaiActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        Main Frr = new Main();
+        this.setVisible(false);
+        Frr.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void btnTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTongTienActionPerformed
-       int tongTien;
-         String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
-         try {
-        int row = -1;
-        tongTien = 0;
-             stmt = con.prepareStatement(sql);
+        int tongTien;
+        String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
+        try {
+            int row = -1;
+            tongTien = 0;
+            stmt = con.prepareStatement(sql);
             rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
-            
-      while(rs.next()){
-    row = row + 1;
-     txtTongTien.setText(" "+String.valueOf(tongTien)); 
-    int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
-      int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
-    tongTien = tongTien + giaThanhXuat * soLuongXuat1;
-    txtTongTien.setText(" "+String.valueOf(tongTien)); 
+
+            while(rs.next()){
+                row = row + 1;
+                txtTongTien.setText(" "+String.valueOf(tongTien));
+                int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
+                int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
+                tongTien = tongTien + giaThanhXuat * soLuongXuat1;
+                txtTongTien.setText(" "+String.valueOf(tongTien));
             }
-            
-            
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnTongTienActionPerformed
 
-    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+    private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBack1ActionPerformed
+    }//GEN-LAST:event_txtTongTienActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
+        String sql = "DELETE FROM demoqlchscxm.phieuXuat WHERE idPhieuXuat = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt1 = con.prepareStatement(sql1);
+            //phieu Xuat
+            int row=this.tbPhieuXuat.getSelectedRow();// lay dong hien tai dang nhan chuot
+            int IDrowPhieuXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 0)).toString());// lay gia tri id cua dong thu i
+            int IDrowPhuTung  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 1)).toString());
+            int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());//chinh cai naylai xoa duoc
+            int soLuongConLai1 = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 5)).toString());
+
+            stmt1.setInt(1, soLuongXuat1 + soLuongConLai1);  //phai cong them so luong xuat lay tu bang thong ke phu tung
+            stmt1.setInt(2, IDrowPhuTung);
+
+            stmt.setInt(1,IDrowPhieuXuat);
+
+            stmt1.executeUpdate();
+            stmt.executeUpdate();
+            // thanhTien();
+
+        } catch (Exception e) {
+        }
+
+        showtbPhieuXuat();
+        showtbThongKePhuTung();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
+        String sql = "INSERT INTO demoqlchscxm.phieuXuat (idphutung,soLuongXuat3) VALUES (?,?)";
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt1 = con.prepareStatement(sql1);
+
+            int row=this.tbThongKePhuTung.getSelectedRow();// lay dong hien tai dang nhan chuot
+            String IDrow= (this.tbThongKePhuTung.getModel().getValueAt(row, 0)).toString();// lay gia tri id cua dong thu i
+            int idCuaPhuTung = Integer.parseInt(IDrow);
+            stmt.setInt(1,idCuaPhuTung);
+            stmt.setInt(2,Integer.parseInt(txtSoLuongXuat.getText()));
+
+            String IDrow6= (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
+            int SoLuongConLaiDangCo = Integer.parseInt(IDrow6);
+            stmt1.setInt(1,(SoLuongConLaiDangCo - Integer.parseInt(txtSoLuongXuat.getText())));
+            stmt1.setInt(2,idCuaPhuTung);
+
+            //         int row = -1;
+            //        int tongTien = 0;
+            //         String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
+            //         try {
+                //             stmt = con.prepareStatement(sql);
+                //            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
+                //            while(rs.next()){
+                    //    row = row + 1;
+                    //     txtTongTien.setText(" "+String.valueOf(tongTien));
+                    //    int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
+                    //      int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
+                    //    tongTien = tongTien + giaThanhXuat * soLuongXuat1;
+                    //    txtTongTien.setText(" "+String.valueOf(tongTien));
+
+                    stmt.executeUpdate();
+                    stmt1.executeUpdate();
+                    // thanhTien();
+
+                } catch (Exception e) {
+                }
+
+                showtbPhieuXuat();
+                showtbThongKePhuTung();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtSoLuongXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongXuatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoLuongXuatActionPerformed
+
+    private void tbPhieuXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPhieuXuatMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbPhieuXuatMouseClicked
+
+    private void tbThongKePhuTungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbThongKePhuTungMouseClicked
+        int row = tbThongKePhuTung.getSelectedRow();
+        if(row != -1 ){
+
+            txtSoLuongConLai.setText(tbThongKePhuTung.getValueAt(row, 6).toString());
+
+        }
+    }//GEN-LAST:event_tbThongKePhuTungMouseClicked
 
     /**
      * @param args the command line arguments
@@ -596,6 +622,7 @@ private PreparedStatement stmt,stmt1,stmt2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -603,8 +630,10 @@ private PreparedStatement stmt,stmt1,stmt2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbPhieuXuat;
     private javax.swing.JTable tbThongKePhuTung;
+    private javax.swing.JTextField txtIdPhieuSuaChua;
     private javax.swing.JTextField txtSoLuongConLai;
     private javax.swing.JTextField txtSoLuongXuat;
+    private javax.swing.JTextField txtTenKhachHang;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 }
