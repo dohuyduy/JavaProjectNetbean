@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author huyduy
  */
 public class ChiTietSuaChua extends javax.swing.JFrame {
-private Connection con,con1;
+private Connection con;
 private ResultSet rs,rs1,rs2;
 private PreparedStatement stmt,stmt1,stmt2;
     /**
@@ -31,7 +31,7 @@ private PreparedStatement stmt,stmt1,stmt2;
             con = Data.getConnection();
         } catch (Exception e) {
         }
-        
+       // thanhTien();
         showtbThongKePhuTung();
         showtbPhieuXuat();
         
@@ -78,16 +78,22 @@ private PreparedStatement stmt,stmt1,stmt2;
 
     }
     
+  
+    
     public void showtbPhieuXuat(){
        Vector cols = new Vector();
        cols.addElement("ID Phieu Xuat");
        cols.addElement("ID phu tung");
        cols.addElement("Ten phu tung");
+      cols.addElement("Gia Thanh Xuat");
        cols.addElement("So luong Xuat");
+       cols.addElement("So luong Con Lai");
+   //  cols.addElement("id Phieu Sua CHua");
+       
    
                     Vector data1 = new Vector();
               
-              String sql = "SELECT idPhieuXuat,phieuXuat.idphutung,nhapphutung.tenPhuTung,soLuongXuat3 FROM demoqlchscxm.nhapphutung INNER JOIN demoqlchscxm.phieuXuat ON demoqlchscxm.nhapphutung.idphutung = demoqlchscxm.phieuXuat.idphutung";
+              String sql = "SELECT idPhieuXuat,phieuXuat.idphutung,nhapphutung.tenPhuTung,nhapphutung.giaThanhXuat,nhapphutung.soLuongConLai,soLuongXuat3 FROM demoqlchscxm.phieuXuat INNER JOIN demoqlchscxm.nhapphutung ON demoqlchscxm.nhapphutung.idphutung = demoqlchscxm.phieuXuat.idphutung";
         try {
           stmt = con.prepareStatement(sql);
             rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
@@ -100,7 +106,11 @@ private PreparedStatement stmt,stmt1,stmt2;
                  px.addElement(rs.getInt("idPhieuXuat"));
                  px.addElement(rs.getInt("idphutung"));
                 px.addElement(rs.getString("tenPhuTung"));
+                 px.addElement(rs.getInt("giaThanhXuat"));
                  px.addElement(rs.getInt("soLuongXuat3"));
+                 px.addElement(rs.getString("soLuongConLai"));
+                // px.addElement(rs.getInt("idPhieuSuaChua"));
+                
                
                  data1.add(px);
             
@@ -109,6 +119,32 @@ private PreparedStatement stmt,stmt1,stmt2;
         }
                 tbPhieuXuat.setModel(new DefaultTableModel(data1, cols));
     }
+    
+    
+//    public void thanhTien(){
+//       int tongTien;
+//         String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
+//         try {
+//        int row = -1;
+//        tongTien = 0;
+//             stmt = con.prepareStatement(sql);
+//            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
+//            
+//      while(rs.next()){
+//    row = row + 1;
+//     txtTongTien.setText(" "+String.valueOf(tongTien)); 
+//    int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
+//      int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
+//    tongTien = tongTien + giaThanhXuat * soLuongXuat1;
+//    txtTongTien.setText(" "+String.valueOf(tongTien)); 
+//            }
+//            
+//            
+//            
+//        } catch (Exception e) {
+//        }
+//      
+//    }
     
     
     /**
@@ -136,6 +172,9 @@ private PreparedStatement stmt,stmt1,stmt2;
         btnTongTien = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtSoLuongConLai = new javax.swing.JTextField();
+        btnBack1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,10 +253,8 @@ private PreparedStatement stmt,stmt1,stmt2;
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(txtSoLuongXuat)
             .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1)
+            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/zoom-seach-icon-32.png"))); // NOI18N
@@ -237,6 +274,11 @@ private PreparedStatement stmt,stmt1,stmt2;
         });
 
         btnTongTien.setText("Tổng tiền");
+        btnTongTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTongTienActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/print-icon-32.png"))); // NOI18N
         jButton4.setText("Print");
@@ -246,10 +288,25 @@ private PreparedStatement stmt,stmt1,stmt2;
             }
         });
 
-        btnBack.setText("Back");
+        btnBack.setText("Exit");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Số lượng còn lại ");
+
+        txtSoLuongConLai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoLuongConLaiActionPerformed(evt);
+            }
+        });
+
+        btnBack1.setText("Back");
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
             }
         });
 
@@ -261,10 +318,11 @@ private PreparedStatement stmt,stmt1,stmt2;
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(249, 249, 249)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1))
+                .addGap(264, 264, 264)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(txtSoLuongConLai, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnTongTien)
@@ -273,29 +331,46 @@ private PreparedStatement stmt,stmt1,stmt2;
                 .addGap(120, 120, 120)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(199, 199, 199))
+                .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSoLuongConLai))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -329,50 +404,21 @@ private PreparedStatement stmt,stmt1,stmt2;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-//        String sql2 = "INSERT INTO demoqlchscxm.phieuXuat (idphutung,soLuongXuat3) VALUES (?,?)";
-//        String sql = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";       
-//        int soLuongConLaiDangCo;
-//        try {
-//            stmt2 = con.prepareStatement(sql2);
-//stmt = con.prepareStatement(sql);
-//
-//           //phieu xuat
-//  int row = this.tbThongKePhuTung.getSelectedRow();// lay dong hien tai dang nhan chuot
-//   String IDrow= (this.tbThongKePhuTung.getModel().getValueAt(row, 0)).toString();// lay gia tri id cua dong thu i
-//    int idCuaPhuTung = Integer.parseInt(IDrow);
-//   
-//    stmt2.setInt(1,idCuaPhuTung);
-//    stmt2.setInt(2, Integer.parseInt(txtSoLuongXuat.getText()));
-// 
-//    // phieu thong ke phu tung
-//        
-//        
-//           String IDrow6 = (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
-//            soLuongConLaiDangCo = Integer.parseInt(IDrow6);
-//            
-//            stmt.setInt(1,soLuongConLaiDangCo -Integer.parseInt(txtSoLuongXuat.getText()));
-//            stmt.setInt(2,idCuaPhuTung);
-// 
-//      
-//       stmt.executeUpdate();
-//         stmt2.executeUpdate();
-//
-//        } catch (Exception e) {
-//        }
-//         
-//        showtbThongKePhuTung();
-//       showtbPhieuXuat();
+        
         String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
         String sql = "INSERT INTO demoqlchscxm.phieuXuat (idphutung,soLuongXuat3) VALUES (?,?)";
+   
         try {
-            stmt = con.prepareStatement(sql);
+             stmt = con.prepareStatement(sql);
             stmt1 = con.prepareStatement(sql1);
+          
+            
              int row=this.tbThongKePhuTung.getSelectedRow();// lay dong hien tai dang nhan chuot
     String IDrow= (this.tbThongKePhuTung.getModel().getValueAt(row, 0)).toString();// lay gia tri id cua dong thu i
     int idCuaPhuTung = Integer.parseInt(IDrow);
         stmt.setInt(1,idCuaPhuTung);
         stmt.setInt(2,Integer.parseInt(txtSoLuongXuat.getText()));
-       
+  
         
         
         String IDrow6= (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
@@ -380,11 +426,33 @@ private PreparedStatement stmt,stmt1,stmt2;
         stmt1.setInt(1,(SoLuongConLaiDangCo - Integer.parseInt(txtSoLuongXuat.getText())));
         stmt1.setInt(2,idCuaPhuTung);
         
+        
+        
+//         int row = -1;
+//        int tongTien = 0;
+//         String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
+//         try {
+//             stmt = con.prepareStatement(sql);
+//            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
+//            while(rs.next()){
+//    row = row + 1;
+//     txtTongTien.setText(" "+String.valueOf(tongTien)); 
+//    int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
+//      int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
+//    tongTien = tongTien + giaThanhXuat * soLuongXuat1;
+//    txtTongTien.setText(" "+String.valueOf(tongTien));
+        
+        
+        
+        
+        
          stmt.executeUpdate();
         stmt1.executeUpdate();
+       // thanhTien();
         
         } catch (Exception e) {
         }
+        
         showtbPhieuXuat();
         showtbThongKePhuTung();
         
@@ -392,7 +460,17 @@ private PreparedStatement stmt,stmt1,stmt2;
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tbThongKePhuTungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbThongKePhuTungMouseClicked
-       // int row = tbThongKePhuTung.getSelectedRow();
+       int row = tbThongKePhuTung.getSelectedRow();
+        if(row != -1 ){
+            
+          
+            
+    
+            
+            txtSoLuongConLai.setText(tbThongKePhuTung.getValueAt(row, 6).toString());
+           
+        }
+
     }//GEN-LAST:event_tbThongKePhuTungMouseClicked
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -406,43 +484,72 @@ private PreparedStatement stmt,stmt1,stmt2;
     }//GEN-LAST:event_tbPhieuXuatMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
+       
+         String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
         String sql = "DELETE FROM demoqlchscxm.phieuXuat WHERE idPhieuXuat = ?";
         try {
             stmt = con.prepareStatement(sql);
             stmt1 = con.prepareStatement(sql1);
-          
-            int choice = JOptionPane.showConfirmDialog(this, "Are you sure?");
-        if(choice == JOptionPane.YES_OPTION){
-            try {
-                int row1=this.tbPhieuXuat.getSelectedRow();
-                String IDrow1= (this.tbThongKePhuTung.getModel().getValueAt(row1, 0)).toString();// lay gia tri id cua dong thu i
-    int idCuaPhieuXuat = Integer.parseInt(IDrow1);
-               stmt = con.prepareStatement(sql);
-               stmt.setInt(1, idCuaPhieuXuat);
-               stmt.executeUpdate();
-               
-            } catch (Exception e){
-                JOptionPane.showMessageDialog(this, "Chọn user trước khi thực hiện");
-            }
-        }
+       //phieu Xuat     
+   int row=this.tbPhieuXuat.getSelectedRow();// lay dong hien tai dang nhan chuot
+   int IDrowPhieuXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 0)).toString());// lay gia tri id cua dong thu i
+    int IDrowPhuTung  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 1)).toString());
+    int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());//chinh cai naylai xoa duoc
+   int soLuongConLai1 = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 5)).toString());
+  
+       
+   stmt1.setInt(1, soLuongXuat1 + soLuongConLai1);  //phai cong them so luong xuat lay tu bang thong ke phu tung
+    stmt1.setInt(2, IDrowPhuTung);
+    
+    
+   stmt.setInt(1,IDrowPhieuXuat);
             
-             int row=this.tbThongKePhuTung.getSelectedRow();// lay dong hien tai dang nhan chuot
-    String IDrow= (this.tbThongKePhuTung.getModel().getValueAt(row, 0)).toString();// lay gia tri id cua dong thu i
-    int idCuaPhuTung = Integer.parseInt(IDrow);
-        String IDrow6= (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
-        int SoLuongConLaiDangCo = Integer.parseInt(IDrow6);
-        stmt1.setInt(1,(SoLuongConLaiDangCo + Integer.parseInt(txtSoLuongXuat.getText())));
-        stmt1.setInt(2,idCuaPhuTung);
-        
-         stmt.executeUpdate();
-
-        
+   
+            stmt1.executeUpdate();
+            stmt.executeUpdate();
+            // thanhTien();
+            
         } catch (Exception e) {
         }
-        showtbPhieuXuat();
+        
+       
+       showtbPhieuXuat();
         showtbThongKePhuTung();
+        
+       
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtSoLuongConLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongConLaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoLuongConLaiActionPerformed
+
+    private void btnTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTongTienActionPerformed
+       int tongTien;
+         String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
+         try {
+        int row = -1;
+        tongTien = 0;
+             stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
+            
+      while(rs.next()){
+    row = row + 1;
+     txtTongTien.setText(" "+String.valueOf(tongTien)); 
+    int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
+      int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
+    tongTien = tongTien + giaThanhXuat * soLuongXuat1;
+    txtTongTien.setText(" "+String.valueOf(tongTien)); 
+            }
+            
+            
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnTongTienActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,11 +589,13 @@ private PreparedStatement stmt,stmt1,stmt2;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnTongTien;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -494,6 +603,7 @@ private PreparedStatement stmt,stmt1,stmt2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbPhieuXuat;
     private javax.swing.JTable tbThongKePhuTung;
+    private javax.swing.JTextField txtSoLuongConLai;
     private javax.swing.JTextField txtSoLuongXuat;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables

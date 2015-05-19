@@ -70,13 +70,7 @@ private PreparedStatement stmt;
    this.lbThongKePhuTung.setText("Tổng số có "+this.tbThongKePhuTung.getRowCount()+" phụ tùng");
     if (this.tbThongKePhuTung.getRowCount() == 0){
    
-//     if (JOptionPane.showConfirmDialog(null, "Hiện không có phụ tùng nào, mời bạn thêm phụ tùng", "Thông Báo", 1) == 1)
-//     {
-//                    NhapPhuTung npt=new NhapPhuTung();
-//                    this.setVisible(false);
-//                    npt.setVisible(true);
-//     }
-    
+
     
     
     }

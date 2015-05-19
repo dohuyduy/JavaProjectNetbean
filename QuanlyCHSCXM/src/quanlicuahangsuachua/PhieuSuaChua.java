@@ -157,7 +157,7 @@ private PreparedStatement stmt;
         btnPrint = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnXemThongKe = new javax.swing.JButton();
         lbPhieuSuaChua = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -395,10 +395,10 @@ private PreparedStatement stmt;
             }
         });
 
-        jButton10.setText("Xem TK");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnXemThongKe.setText("Xem TK");
+        btnXemThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnXemThongKeActionPerformed(evt);
             }
         });
 
@@ -432,7 +432,7 @@ private PreparedStatement stmt;
                         .addGap(106, 106, 106)
                         .addComponent(lbPhieuSuaChua, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnXemThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -463,7 +463,7 @@ private PreparedStatement stmt;
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnXemThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lbPhieuSuaChua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
         );
@@ -486,9 +486,11 @@ private PreparedStatement stmt;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void btnXemThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemThongKeActionPerformed
+        thongkexe tkx = new thongkexe();
+                    this.setVisible(false);
+                    tkx.setVisible(true);
+    }//GEN-LAST:event_btnXemThongKeActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
          Main Frmm=new Main();
@@ -596,7 +598,8 @@ private PreparedStatement stmt;
                txtNgayTra.setText(tbPhieuSuaChua.getValueAt(row, 9).toString());
                 txtTongPhi.setText(tbPhieuSuaChua.getValueAt(row, 10).toString());
                  txtTinhTrangSau.setText(tbPhieuSuaChua.getValueAt(row, 11).toString());
-               
+         
+                 
         }
     }//GEN-LAST:event_tbPhieuSuaChuaMouseClicked
 
@@ -696,9 +699,12 @@ private PreparedStatement stmt;
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        int row = tbPhieuSuaChua.getSelectedRow();
+        if(row != -1 ){
         ChiTietSuaChua ctsc = new ChiTietSuaChua();
         this.setVisible(false);
         ctsc.setVisible(true);
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
@@ -742,8 +748,8 @@ private PreparedStatement stmt;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnXemThongKe;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;

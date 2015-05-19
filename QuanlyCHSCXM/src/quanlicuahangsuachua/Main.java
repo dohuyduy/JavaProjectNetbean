@@ -248,7 +248,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miThongKeXeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miThongKeXeActionPerformed
-        // TODO add your handling code here:
+        thongkexe tkx = new thongkexe();
+        this.setVisible(false);
+        tkx.setVisible(true);
     }//GEN-LAST:event_miThongKeXeActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed

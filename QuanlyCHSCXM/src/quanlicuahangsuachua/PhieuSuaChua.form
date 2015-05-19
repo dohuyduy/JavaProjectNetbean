@@ -97,7 +97,7 @@
                           <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                           <Component id="lbPhieuSuaChua" min="-2" pref="194" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton10" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="btnXemThongKe" min="-2" pref="111" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton7" min="-2" pref="113" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
                           <Component id="jButton8" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="btnPrint" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jButton7" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="jButton10" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="btnXemThongKe" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <Component id="lbPhieuSuaChua" max="32767" attributes="0"/>
                   </Group>
@@ -601,12 +601,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="btnXemThongKe">
           <Properties>
             <Property name="text" type="java.lang.String" value="Xem TK"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXemThongKeActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbPhieuSuaChua">
