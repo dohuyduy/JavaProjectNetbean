@@ -65,6 +65,8 @@
                   <Component id="txtTongTien" min="-2" pref="157" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                   <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
+                  <Component id="txtTry" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnBack1" min="-2" pref="87" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -117,7 +119,10 @@
                                   <Component id="txtTongTien" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                                   <Component id="btnTongTien" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jButton4" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jButton4" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="txtTry" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -309,14 +314,20 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtIdPhieuSuaChua">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="ID PSC"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdPhieuSuaChuaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTenKhachHang">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="T&#xea;n kh&#xe1;ch h&#xe0;ng"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTry">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jTextField2"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -35,9 +35,8 @@ private PreparedStatement stmt,stmt1,stmt2;
             con = Data.getConnection();
         } catch (Exception e) {
         }
-        int a = psc1.getIdPhieuSuaChua();  //can phai sua cho nay de xuat ra Id
-        
-        txtIdPhieuSuaChua.setText(String.valueOf(a));
+    
+        txtIdPhieuSuaChua.setText(String.valueOf(psc1.getIdPhieuSuaChua()));
         txtTenKhachHang.setText(psc1.getTenKhachHang());
         showtbThongKePhuTung();
         showtbPhieuXuat();
@@ -109,12 +108,12 @@ private PreparedStatement stmt,stmt1,stmt2;
       cols.addElement("Gia Thanh Xuat");
        cols.addElement("So luong Xuat");
        cols.addElement("So luong Con Lai");
-   //  cols.addElement("id Phieu Sua CHua");
+     cols.addElement("id Phieu Sua CHua");
        
    
                     Vector data1 = new Vector();
               
-              String sql = "SELECT idPhieuXuat,phieuXuat.idphutung,nhapphutung.tenPhuTung,nhapphutung.giaThanhXuat,nhapphutung.soLuongConLai,soLuongXuat3 FROM demoqlchscxm.phieuXuat INNER JOIN demoqlchscxm.nhapphutung ON demoqlchscxm.nhapphutung.idphutung = demoqlchscxm.phieuXuat.idphutung";
+              String sql = "SELECT idPhieuXuat,phieuXuat.idphutung,nhapphutung.tenPhuTung,nhapphutung.giaThanhXuat,nhapphutung.soLuongConLai,soLuongXuat3,idPhieuSuaChua FROM demoqlchscxm.phieuXuat INNER JOIN demoqlchscxm.nhapphutung ON demoqlchscxm.nhapphutung.idphutung = demoqlchscxm.phieuXuat.idphutung";
         try {
           stmt = con.prepareStatement(sql);
             rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
@@ -130,7 +129,8 @@ private PreparedStatement stmt,stmt1,stmt2;
                  px.addElement(rs.getInt("giaThanhXuat"));
                  px.addElement(rs.getInt("soLuongXuat3"));
                  px.addElement(rs.getString("soLuongConLai"));
-                // px.addElement(rs.getInt("idPhieuSuaChua"));
+                 
+                 px.addElement(rs.getInt("idPhieuSuaChua"));
                 
                
                  data1.add(px);
@@ -199,6 +199,7 @@ private PreparedStatement stmt,stmt1,stmt2;
         jLabel3 = new javax.swing.JLabel();
         txtIdPhieuSuaChua = new javax.swing.JTextField();
         txtTenKhachHang = new javax.swing.JTextField();
+        txtTry = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -336,11 +337,16 @@ private PreparedStatement stmt,stmt1,stmt2;
 
         jLabel3.setText("Khách hàng:");
 
-        txtIdPhieuSuaChua.setEditable(false);
         txtIdPhieuSuaChua.setText("ID PSC");
+        txtIdPhieuSuaChua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdPhieuSuaChuaActionPerformed(evt);
+            }
+        });
 
-        txtTenKhachHang.setEditable(false);
         txtTenKhachHang.setText("Tên khách hàng");
+
+        txtTry.setText("jTextField2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -370,6 +376,8 @@ private PreparedStatement stmt,stmt1,stmt2;
                 .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(120, 120, 120)
                 .addComponent(jButton4)
+                .addGap(196, 196, 196)
+                .addComponent(txtTry, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -412,7 +420,9 @@ private PreparedStatement stmt,stmt1,stmt2;
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtTry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -519,7 +529,7 @@ private PreparedStatement stmt,stmt1,stmt2;
 
         String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
         String sql = "INSERT INTO demoqlchscxm.phieuXuat (idphutung,soLuongXuat3) VALUES (?,?)";
-
+//,idPhieuSuaChua  ,?
         try {
             stmt = con.prepareStatement(sql);
             stmt1 = con.prepareStatement(sql1);
@@ -529,25 +539,17 @@ private PreparedStatement stmt,stmt1,stmt2;
             int idCuaPhuTung = Integer.parseInt(IDrow);
             stmt.setInt(1,idCuaPhuTung);
             stmt.setInt(2,Integer.parseInt(txtSoLuongXuat.getText()));
-
-            String IDrow6= (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
+            //stmt.setInt(3,13); //tai SAO SAI????  txtIdPhieuSuaChua.getText()
+           // this.lbtongphutung.setText("Tổng số có "+this.tbdanhsach.getRowCount()+" phụ tùng");
+            
+           // this.txtTry.setText("Hello");  //txtTenKhachHang.getText()
+            
+            String IDrow6 = (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
             int SoLuongConLaiDangCo = Integer.parseInt(IDrow6);
             stmt1.setInt(1,(SoLuongConLaiDangCo - Integer.parseInt(txtSoLuongXuat.getText())));
             stmt1.setInt(2,idCuaPhuTung);
 
-            //         int row = -1;
-            //        int tongTien = 0;
-            //         String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
-            //         try {
-                //             stmt = con.prepareStatement(sql);
-                //            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
-                //            while(rs.next()){
-                    //    row = row + 1;
-                    //     txtTongTien.setText(" "+String.valueOf(tongTien));
-                    //    int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
-                    //      int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
-                    //    tongTien = tongTien + giaThanhXuat * soLuongXuat1;
-                    //    txtTongTien.setText(" "+String.valueOf(tongTien));
+            
 
                     stmt.executeUpdate();
                     stmt1.executeUpdate();
@@ -569,13 +571,17 @@ private PreparedStatement stmt,stmt1,stmt2;
     }//GEN-LAST:event_tbPhieuXuatMouseClicked
 
     private void tbThongKePhuTungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbThongKePhuTungMouseClicked
-        int row = tbThongKePhuTung.getSelectedRow();
-        if(row != -1 ){
-
-            txtSoLuongConLai.setText(tbThongKePhuTung.getValueAt(row, 6).toString());
-
-        }
+//        int row = tbThongKePhuTung.getSelectedRow();
+//        if(row != -1 ){
+//
+//            txtSoLuongConLai.setText(tbThongKePhuTung.getValueAt(row, 6).toString());
+//
+//        }
     }//GEN-LAST:event_tbThongKePhuTungMouseClicked
+
+    private void txtIdPhieuSuaChuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPhieuSuaChuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdPhieuSuaChuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -635,5 +641,6 @@ private PreparedStatement stmt,stmt1,stmt2;
     private javax.swing.JTextField txtSoLuongXuat;
     private javax.swing.JTextField txtTenKhachHang;
     private javax.swing.JTextField txtTongTien;
+    private javax.swing.JTextField txtTry;
     // End of variables declaration//GEN-END:variables
 }
