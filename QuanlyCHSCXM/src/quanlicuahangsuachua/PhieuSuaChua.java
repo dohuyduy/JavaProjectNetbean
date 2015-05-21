@@ -622,7 +622,8 @@ private PreparedStatement stmt;
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String sql = "INSERT INTO demoqlchscxm.phieusuachua (nhanVienPhucVu,ngayNhan,tenKhachHang,bienKiemSoat,dienThoai,ngayGiao,nhanVienSuaChua,tinhTrangTruoc,ngayTra,tongPhi,tinhTrangSau) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO demoqlchscxm.phieusuachua (nhanVienPhucVu,ngayNhan,tenKhachHang,bienKiemSoat,dienThoai,ngayGiao,nhanVienSuaChua,tinhTrangTruoc,ngayTra,tinhTrangSau) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        //,tongPhi   
         try {
             stmt = con.prepareStatement(sql);
             
@@ -636,8 +637,8 @@ private PreparedStatement stmt;
             stmt.setString(7,txtNhanVienSuaChua.getText());
             stmt.setString(8,txtTinhTrangTruoc.getText());
             stmt.setDate(9,java.sql.Date.valueOf(txtNgayTra.getText()));
-            stmt.setInt(10,Integer.parseInt(txtTongPhi.getText()));
-            stmt.setString(11,txtTinhTrangSau.getText());
+            //stmt.setInt(10,Integer.parseInt(txtTongPhi.getText()));
+            stmt.setString(10,txtTinhTrangSau.getText());
 
         stmt.executeUpdate();
 
@@ -647,7 +648,8 @@ private PreparedStatement stmt;
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-         String sql = "UPDATE demoqlchscxm.phieusuachua SET nhanVienPhucVu = ?,ngayNhan = ?,tenKhachHang = ?,bienKiemSoat = ?,dienThoai = ?,ngayGiao = ?,nhanVienSuaChua = ?,tinhTrangTruoc = ?,ngayTra = ?,tongPhi = ?,tinhTrangSau = ? WHERE idPhieuSuaChua = ?";
+         String sql = "UPDATE demoqlchscxm.phieusuachua SET nhanVienPhucVu = ?,ngayNhan = ?,tenKhachHang = ?,bienKiemSoat = ?,dienThoai = ?,ngayGiao = ?,nhanVienSuaChua = ?,tinhTrangTruoc = ?,ngayTra = ?,tinhTrangSau = ? WHERE idPhieuSuaChua = ?";
+         //,tongPhi = ?
          try {
             int id = Integer.parseInt(txtID.getText());
              stmt = con.prepareStatement(sql);
@@ -660,9 +662,9 @@ private PreparedStatement stmt;
             stmt.setString(7,txtNhanVienSuaChua.getText());
             stmt.setString(8,txtTinhTrangTruoc.getText());
             stmt.setDate(9,java.sql.Date.valueOf(txtNgayTra.getText()));
-            stmt.setInt(10,Integer.parseInt(txtTongPhi.getText()));
-            stmt.setString(11,txtTinhTrangSau.getText());
-            stmt.setInt(12,id);
+           // stmt.setInt(10,Integer.parseInt(txtTongPhi.getText()));
+            stmt.setString(10,txtTinhTrangSau.getText());
+            stmt.setInt(11,id);
             
             stmt.executeUpdate();
         } catch (Exception e) {

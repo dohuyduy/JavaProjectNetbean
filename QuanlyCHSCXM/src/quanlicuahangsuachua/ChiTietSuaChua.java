@@ -70,6 +70,7 @@ private PreparedStatement stmt,stmt1,stmt2;
         cols.addElement("Số lượng còn lại");
         //tao vector du lieu
              Vector data1 = new Vector();
+             
         String sql = "SELECT * FROM demoqlchscxm.nhapphutung";
        
         try {
@@ -108,12 +109,19 @@ private PreparedStatement stmt,stmt1,stmt2;
       cols.addElement("Gia Thanh Xuat");
        cols.addElement("So luong Xuat");
        cols.addElement("So luong Con Lai");
-     cols.addElement("id Phieu Sua CHua");
+       //cols.addElement("id Phieu Sua CHua");
        
    
                     Vector data1 = new Vector();
               
-              String sql = "SELECT idPhieuXuat,phieuXuat.idphutung,nhapphutung.tenPhuTung,nhapphutung.giaThanhXuat,nhapphutung.soLuongConLai,soLuongXuat3,idPhieuSuaChua FROM demoqlchscxm.phieuXuat INNER JOIN demoqlchscxm.nhapphutung ON demoqlchscxm.nhapphutung.idphutung = demoqlchscxm.phieuXuat.idphutung";
+//                    int row = tbPhieuSuaChua.getSelectedRow();
+//         String IDrow = (this.tbPhieuSuaChua.getModel().getValueAt(row, 0)).toString();
+//        if(row != -1 ){
+//        try {
+//            String sql = "SELECT * FROM demoqlchscxm.phieusuachua WHERE idPhieuSuaChua = '"+IDrow+"'";
+                    
+                    
+              String sql = "SELECT idPhieuXuat,phieuXuat.idphutung,nhapphutung.tenPhuTung,nhapphutung.giaThanhXuat,nhapphutung.soLuongConLai,soLuongXuat3 FROM demoqlchscxm.phieuXuat INNER JOIN demoqlchscxm.nhapphutung ON demoqlchscxm.nhapphutung.idphutung = demoqlchscxm.phieuXuat.idphutung WHERE idPhieuSuaChua = '"+txtIdPhieuSuaChua.getText()+"'";
         try {
           stmt = con.prepareStatement(sql);
             rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
@@ -128,9 +136,10 @@ private PreparedStatement stmt,stmt1,stmt2;
                 px.addElement(rs.getString("tenPhuTung"));
                  px.addElement(rs.getInt("giaThanhXuat"));
                  px.addElement(rs.getInt("soLuongXuat3"));
-                 px.addElement(rs.getString("soLuongConLai"));
+                 px.addElement(rs.getInt("soLuongConLai"));
+                
                  
-                 px.addElement(rs.getInt("idPhieuSuaChua"));
+                 //px.addElement(rs.getInt("idPhieuSuaChua"));
                 
                
                  data1.add(px);
@@ -199,7 +208,6 @@ private PreparedStatement stmt,stmt1,stmt2;
         jLabel3 = new javax.swing.JLabel();
         txtIdPhieuSuaChua = new javax.swing.JTextField();
         txtTenKhachHang = new javax.swing.JTextField();
-        txtTry = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -346,8 +354,6 @@ private PreparedStatement stmt,stmt1,stmt2;
 
         txtTenKhachHang.setText("Tên khách hàng");
 
-        txtTry.setText("jTextField2");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -376,8 +382,6 @@ private PreparedStatement stmt,stmt1,stmt2;
                 .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(120, 120, 120)
                 .addComponent(jButton4)
-                .addGap(196, 196, 196)
-                .addComponent(txtTry, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -420,9 +424,7 @@ private PreparedStatement stmt,stmt1,stmt2;
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtTry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton4)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -466,25 +468,62 @@ private PreparedStatement stmt,stmt1,stmt2;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTongTienActionPerformed
-        int tongTien;
-        String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
+//        int tongTien;
+//        String sql = "SELECT * FROM demoqlchscxm.phieuXuat";
+//        String sql1 = "UPDATE demoqlchscxm.phieusuachua SET tongPhi = ? WHERE idPhieuSuaChua = ?";
+//         //van de la o cho rs.next. phai sua duoc cho doan nay
+//        try {
+//            int row = -1;
+//            tongTien = 0;
+//            stmt = con.prepareStatement(sql);
+//            stmt1 = con.prepareStatement(sql1);
+//            
+//           
+//            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
+//
+//           while(rs.next()){
+//                row = row + 1;
+//                txtTongTien.setText(" "+String.valueOf(tongTien));
+//                int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
+//                int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
+//                tongTien = tongTien + giaThanhXuat * soLuongXuat1;
+//               // txtTongTien.setText(" "+String.valueOf(tongTien));
+//                
+//                txtTongTien.setText(" "+String.valueOf(tongTien));
+//                stmt1.setInt(1,tongTien);
+//            stmt1.setInt(2,Integer.parseInt(txtIdPhieuSuaChua.getText()));  //Integer.parseInt(txtIdPhieuSuaChua.getText())
+//            
+//           
+//           stmt1.executeUpdate();
+//            }
+//            
+//           
+//        } catch (Exception e) {
+//           JOptionPane.showMessageDialog(this, "Chon 1 user truoc khi update");
+//       }
+//      
+        
+        String sql1 = "UPDATE demoqlchscxm.phieusuachua SET tongPhi = ? WHERE idPhieuSuaChua = ?";
+        
         try {
-            int row = -1;
-            tongTien = 0;
-            stmt = con.prepareStatement(sql);
-            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
-
-            while(rs.next()){
-                row = row + 1;
-                txtTongTien.setText(" "+String.valueOf(tongTien));
-                int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
-                int soLuongXuat1  = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
-                tongTien = tongTien + giaThanhXuat * soLuongXuat1;
-                txtTongTien.setText(" "+String.valueOf(tongTien));
-            }
-
+            stmt1 = con.prepareStatement(sql1);
+            
+            int a = tbPhieuXuat.getRowCount();
+        int tongTien = 0;
+     for  (int row = 0; row < (a) ;row++){   //phai tim cach lay duoc cai row nay
+         int giaThanhXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 3)).toString());
+         int soLuongXuat = Integer.parseInt((this.tbPhieuXuat.getModel().getValueAt(row, 4)).toString());
+         tongTien = tongTien + giaThanhXuat * soLuongXuat;
+         txtTongTien.setText(" "+String.valueOf(tongTien));
+     }
+     stmt1.setInt(1,tongTien);
+     stmt1.setInt(2,Integer.parseInt(txtIdPhieuSuaChua.getText()));
+     stmt1.executeUpdate();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Chon 1 user truoc khi update");
         }
+        
+        
     }//GEN-LAST:event_btnTongTienActionPerformed
 
     private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
@@ -516,8 +555,7 @@ private PreparedStatement stmt,stmt1,stmt2;
 
             stmt1.executeUpdate();
             stmt.executeUpdate();
-            // thanhTien();
-
+  
         } catch (Exception e) {
         }
 
@@ -527,9 +565,10 @@ private PreparedStatement stmt,stmt1,stmt2;
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
+        
         String sql1 = "UPDATE demoqlchscxm.nhapphutung SET soLuongConLai = ? WHERE idphutung = ?";
-        String sql = "INSERT INTO demoqlchscxm.phieuXuat (idphutung,soLuongXuat3) VALUES (?,?)";
-//,idPhieuSuaChua  ,?
+        String sql = "INSERT INTO demoqlchscxm.phieuXuat (idphutung,soLuongXuat3,idPhieuSuaChua) VALUES (?,?,?)";
+
         try {
             stmt = con.prepareStatement(sql);
             stmt1 = con.prepareStatement(sql1);
@@ -539,21 +578,18 @@ private PreparedStatement stmt,stmt1,stmt2;
             int idCuaPhuTung = Integer.parseInt(IDrow);
             stmt.setInt(1,idCuaPhuTung);
             stmt.setInt(2,Integer.parseInt(txtSoLuongXuat.getText()));
-            //stmt.setInt(3,13); //tai SAO SAI????  txtIdPhieuSuaChua.getText()
-           // this.lbtongphutung.setText("Tổng số có "+this.tbdanhsach.getRowCount()+" phụ tùng");
+            stmt.setInt(3,Integer.parseInt(txtIdPhieuSuaChua.getText()));
             
-           // this.txtTry.setText("Hello");  //txtTenKhachHang.getText()
-            
-            String IDrow6 = (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
+            String IDrow6= (this.tbThongKePhuTung.getModel().getValueAt(row, 6)).toString();
             int SoLuongConLaiDangCo = Integer.parseInt(IDrow6);
             stmt1.setInt(1,(SoLuongConLaiDangCo - Integer.parseInt(txtSoLuongXuat.getText())));
             stmt1.setInt(2,idCuaPhuTung);
-
+           
             
 
                     stmt.executeUpdate();
                     stmt1.executeUpdate();
-                    // thanhTien();
+                    
 
                 } catch (Exception e) {
                 }
@@ -641,6 +677,5 @@ private PreparedStatement stmt,stmt1,stmt2;
     private javax.swing.JTextField txtSoLuongXuat;
     private javax.swing.JTextField txtTenKhachHang;
     private javax.swing.JTextField txtTongTien;
-    private javax.swing.JTextField txtTry;
     // End of variables declaration//GEN-END:variables
 }
