@@ -35,12 +35,13 @@ public class HuongDanSuDung extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HƯỚNG DẪN SỬ DỤNG PHẦN MỀM");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("﻿Phần mềm bao gồm 7 chức năng chính:\n1.Khách hàng gồm:\n   a.Nhận xe: Khách hàng -> Nhận xe. Dùng khi khách hàng đến cửa hàng và giao xe cho nhân viên phục vụ để sửa chưa. \n   b.Giao xe: Khách hàng -> Giao xe. Dùng khi nhân viên phục vụ giao xe cho nhân viên sửa chữa để sửa cho khách.\n   c.Trả xe: Khách hàng -> Giao xe. Dùng khi sẽ đã sửa xong và khách hàng đến nhận lại xe của mình và thanh toán với nhân viên phục vụ.\n   d.Thông kê xe: Khách hàng -> Thông kê xe. Dùng để thông kê số lượng khách hàng đến cửa hàng trong một ngày, một tuần, một tháng.\n2.Phụ tùng gồm:\n   a.Nhập phụ tùng: Phụ tùng -> Nhập phụ tùng. Dùng khi nhập mới phụ tùng sửa chữa của cửa hàng vào kho của cửa hàng.\n   b.Thống kê phụ tùng: Phụ tùng -> Thống kê phụ tùng. Dùng khi muốn biết các thông tin về một phụ tung nào đó có trong cửa hàng.\n3.Nhân viên gồm:\n4.Lịch làm việc:\n5.Tìm kiếm:\n6.Trợ giúp:\n7.Tác vụ:");
+        jTextArea1.setText("﻿Phần mềm bao gồm 7 chức năng chính:\n1.Khách hàng gồm:\n   a.Nhận xe: Khách hàng -> Nhận xe.\n Dùng khi khách hàng đến cửa hàng và giao xe cho NVPV để sửa chưa. \n   b.Giao xe: Khách hàng -> Giao xe. \nDùng khi nhân viên phục vụ giao xe cho NVSC để sửa cho khách.\n   c.Trả xe: Khách hàng -> Giao xe.\n Dùng khi sẽ đã sửa xong và khách hàng đến nhận lại xe của mình và thanh toán với NVPV.\n   d.Thông kê xe: Khách hàng -> Thông kê xe. \nDùng để thông kê số lượng khách hàng đến cửa hàng trong một ngày, một tuần, một tháng.\n2.Phụ tùng gồm:\n   a.Nhập phụ tùng: Phụ tùng -> Nhập phụ tùng. \nDùng khi nhập mới phụ tùng sửa chữa của cửa hàng vào kho của cửa hàng.\n   b.Thống kê phụ tùng: Phụ tùng -> Thống kê phụ tùng. \nDùng khi muốn biết các thông tin về một phụ tùng nào đó có trong cửa hàng.\n3.Nhân viên gồm:\n4.Lịch làm việc:\n5.Tìm kiếm:\n6.Trợ giúp:\n7.Tác vụ:");
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("OK");
@@ -55,36 +56,33 @@ public class HuongDanSuDung extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 163, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(140, 140, 140))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(211, 211, 211))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(339, 339, 339)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

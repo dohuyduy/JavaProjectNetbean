@@ -96,7 +96,7 @@ private PreparedStatement stmt;
         }
         
         tbPhieuSuaChua.setModel(new DefaultTableModel(data3, cols));
-   this.lbPhieuSuaChua.setText("Tổng số có "+this.tbPhieuSuaChua.getRowCount()+" phụ tùng"); 
+   this.lbPhieuSuaChua.setText("Tổng số có "+this.tbPhieuSuaChua.getRowCount()+" xe"); 
 
     }
     

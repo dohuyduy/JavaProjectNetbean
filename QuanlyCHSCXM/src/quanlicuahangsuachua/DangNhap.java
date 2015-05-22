@@ -60,7 +60,7 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LOGIN");
+        jLabel1.setText("ĐĂNG NHẬP");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -68,8 +68,8 @@ public class DangNhap extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,12 +79,12 @@ public class DangNhap extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.GridLayout(2, 2));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Username: ");
+        jLabel2.setText("Tên đăng nhập:");
         jPanel3.add(jLabel2);
         jPanel3.add(txtAccount);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Password:");
+        jLabel3.setText("Mật khẩu:");
         jPanel3.add(jLabel3);
         jPanel3.add(txtPassword);
 
@@ -97,8 +97,9 @@ public class DangNhap extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +107,7 @@ public class DangNhap extends javax.swing.JFrame {
         );
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/key-icon-32.png"))); // NOI18N
-        btnLogin.setText("Login");
+        btnLogin.setText("Đăng nhập");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -114,7 +115,7 @@ public class DangNhap extends javax.swing.JFrame {
         });
 
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/power-icon-32.png"))); // NOI18N
-        btnExit.setText("Exit");
+        btnExit.setText("Thoát");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -130,9 +131,9 @@ public class DangNhap extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(46, 46, 46)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 11, Short.MAX_VALUE))
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -181,7 +182,7 @@ public void currentTime(){
     
 }
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        if (JOptionPane.showConfirmDialog(null,"Exit this program?","Managment",2) == 0){
+        if (JOptionPane.showConfirmDialog(null,"Bạn có muốn thoát khỏi chương trình này không?","QUẢN LÍ",2) == 0){
             this.dispose();
         }
     }//GEN-LAST:event_btnExitActionPerformed
@@ -209,21 +210,21 @@ public void currentTime(){
                          
                      case "NVPV":
                          Main Frr1 = new Main();
-                         this.setVisible(true);
+                         this.setVisible(false);
                          Frr1.setVisible(true);
                          break;
                     case "NVSC":
                          Main Frr2 = new Main();
-                         this.setVisible(true);
+                         this.setVisible(false);
                          Frr2.setVisible(true);
                          break;
                      default:
-                          JOptionPane.showMessageDialog(this, "Login Failed, try again!");
+                          JOptionPane.showMessageDialog(this, "Đăng nhập thất bại, hãy thử lại!");
                  }
                 
             }else
                  {
-                    JOptionPane.showMessageDialog(this, "Login Failed, try again!");
+                    JOptionPane.showMessageDialog(this, "Đăng nhập thất bại, hãy thử lại!");
                 }
             
             } catch (Exception e) {

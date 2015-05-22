@@ -43,9 +43,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   <Component id="btnLogin" min="-2" pref="127" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="btnExit" min="-2" pref="133" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="jPanel4" pref="11" max="32767" attributes="0"/>
               </Group>
               <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
@@ -81,8 +81,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="105" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="184" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -99,7 +99,7 @@
                   <Font name="Tahoma" size="24" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="LOGIN"/>
+                <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG NH&#x1eac;P"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -114,7 +114,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Username: "/>
+                <Property name="text" type="java.lang.String" value="T&#xea;n &#x111;&#x103;ng nh&#x1ead;p:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtAccount">
@@ -122,7 +122,7 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Password:"/>
+                <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtPassword">
@@ -142,8 +142,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="lbTime" min="-2" pref="192" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -166,7 +167,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icon/key-icon-32.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Login"/>
+            <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng nh&#x1ead;p"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoginActionPerformed"/>
@@ -177,7 +178,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icon/power-icon-32.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Exit"/>
+            <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
