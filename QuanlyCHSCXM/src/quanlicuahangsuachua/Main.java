@@ -21,7 +21,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("QUẢN LÍ CỬA HÀNG SỬA CHỮA XE MÁY");
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/2.png")));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icon/repair.png")));
         
     }
 
@@ -50,7 +50,6 @@ public class Main extends javax.swing.JFrame {
         miTimKhach = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         miTimPT = new javax.swing.JMenuItem();
-        TimNCC = new javax.swing.JMenuItem();
         mTacvu = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -179,12 +178,12 @@ public class Main extends javax.swing.JFrame {
         miTimPT.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         miTimPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/zoom-seach-icon-32.png"))); // NOI18N
         miTimPT.setText("Tìm kiếm Phụ tùng");
+        miTimPT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miTimPTActionPerformed(evt);
+            }
+        });
         miTimKhach.add(miTimPT);
-
-        TimNCC.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        TimNCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/zoom-seach-icon-32.png"))); // NOI18N
-        TimNCC.setText("Tìm kiếm nhà Cung cấp");
-        miTimKhach.add(TimNCC);
 
         jMenuBar1.add(miTimKhach);
 
@@ -263,7 +262,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_miThongKeXeActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
+        thongkexe tkx = new thongkexe();
+        this.setVisible(false);
+        tkx.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void miPhieuSuaChuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPhieuSuaChuaActionPerformed
@@ -329,6 +330,12 @@ if(JOptionPane.showConfirmDialog(null,"Bạn có muốn thoát khỏi chương t
         nv.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void miTimPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miTimPTActionPerformed
+        NhapPhuTung npt = new NhapPhuTung();
+        this.setVisible(false);
+        npt.setVisible(true);
+    }//GEN-LAST:event_miTimPTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,7 +372,6 @@ if(JOptionPane.showConfirmDialog(null,"Bạn có muốn thoát khỏi chương t
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem TimNCC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem12;

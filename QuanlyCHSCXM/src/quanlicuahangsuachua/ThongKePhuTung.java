@@ -87,8 +87,8 @@ private PreparedStatement stmt;
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbThongKePhuTung = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -99,31 +99,42 @@ private PreparedStatement stmt;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("THỐNG KÊ PHỤ TÙNG");
 
-        jButton1.setText("jButton1");
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/zoom-seach-icon-32.png"))); // NOI18N
+        btnSearch.setText("Tìm kiếm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("jTextField1");
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
-                .addComponent(jTextField1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(91, 91, 91)
+                .addComponent(txtSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-            .addComponent(jTextField1)
+            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtSearch)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tbThongKePhuTung.setModel(new javax.swing.table.DefaultTableModel(
@@ -157,7 +168,8 @@ private PreparedStatement stmt;
 
         jPanel5.setLayout(new java.awt.GridLayout(1, 2));
 
-        txtBack.setText("Back");
+        txtBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow-next-3-icon-32.png"))); // NOI18N
+        txtBack.setText("Quay lại");
         txtBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBackActionPerformed(evt);
@@ -165,7 +177,8 @@ private PreparedStatement stmt;
         });
         jPanel5.add(txtBack);
 
-        btnExit.setText("Exit");
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/close-icon-32.png"))); // NOI18N
+        btnExit.setText("Thoát");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -181,8 +194,8 @@ private PreparedStatement stmt;
             .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(65, 65, 65)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,8 +206,8 @@ private PreparedStatement stmt;
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,6 +237,53 @@ private PreparedStatement stmt;
                     this.setVisible(false);
                     Frmm.setVisible(true); 
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String textSearch = txtSearch.getText().trim();
+        Vector cols = new Vector();
+    cols.addElement("ID Phụ tùng");
+    cols.addElement("Tên Phụ Tùng");
+        cols.addElement("Nhà Cung Cấp");
+        cols.addElement("Ngày nhập");
+        cols.addElement("Số lượng");
+        cols.addElement("Giá thành nhập");
+        cols.addElement("Giá thành xuất");
+        //tao vector du lieu
+             Vector dataSearch = new Vector();
+        
+             String sql = "SELECT * FROM demoqlchscxm.nhapphutung";
+        try {
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery(sql); //dung querry vi dung cau lenh select
+            while(rs.next()){     //duyet du lieu
+                 Vector npt1 = new Vector();
+                 npt1.addElement(rs.getInt("idphutung"));
+                 npt1.addElement(rs.getString("tenPhuTung"));
+                 npt1.addElement(rs.getString("nhaCungCap"));
+                 //stmt.setDate(3,java.sql.Date.valueOf(txtNgayNhap.getText()));
+                 npt1.addElement(rs.getDate("ngayNhap"));
+                 npt1.addElement(rs.getInt("soLuong"));
+                 npt1.addElement(rs.getInt("giaThanh"));
+                 npt1.addElement(rs.getInt("giaThanhXuat"));
+                
+                 if(npt1.toString().contains(textSearch)){  
+                     dataSearch.addElement(npt1);
+                 } 
+                  
+                
+            }
+            
+        } catch (Exception e) {
+        }
+        
+        tbThongKePhuTung.setModel(new DefaultTableModel(dataSearch, cols));
+        if (textSearch == null)
+            showtbThongKePhuTung();
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,16 +322,16 @@ private PreparedStatement stmt;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbThongKePhuTung;
     private javax.swing.JTable tbThongKePhuTung;
     private javax.swing.JButton txtBack;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
