@@ -530,9 +530,11 @@ private PreparedStatement stmt;
          document.add(new Paragraph("                                                                                     "));
             PdfPTable table = new PdfPTable(4);
             
-        PdfPCell cell= new PdfPCell( new Paragraph("        Nhan Xe, Giao Xe, Tra Xe"));
+        PdfPCell cell= new PdfPCell( new Paragraph("                  NHAN XE, GIAO XE, TRA XE"));
         cell.setColspan(4);
+       // cell.setBorderColor(BaseColor.WHITE);
         cell.setHorizontalAlignment(Element.DEFAULT);
+       
         cell.setBackgroundColor(BaseColor.WHITE);
         table.addCell(cell);
         table.addCell("Ten Khach Hang");
@@ -584,7 +586,7 @@ private PreparedStatement stmt;
         
         document.close();
         JOptionPane.showMessageDialog(null, "Trang 1 được lưu trong E:\\page1");
-      
+       JOptionPane.showMessageDialog(null, "Trang 1 được lưu trong E:\\page1");
         
     }
         catch(Exception e)

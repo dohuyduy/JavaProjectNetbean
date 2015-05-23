@@ -319,9 +319,9 @@ if(JOptionPane.showConfirmDialog(null,"Bạn có muốn thoát khỏi chương t
     }//GEN-LAST:event_miThoatActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       nhanvien nv = new nhanvien();
+       LichLamViec llv = new LichLamViec();
         this.setVisible(false);
-        nv.setVisible(true);
+        llv.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
